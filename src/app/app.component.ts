@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'app';
 
   private gameComponents = [];
+  public topic: string = 'observables';
 
   public onSecondPassed(counter: number) {
     if (counter % 2 == 0) {

@@ -1,7 +1,13 @@
 <div class="container">
-  <app-game-control (second-passed)="onSecondPassed($event)"></app-game-control>
-  <div *ngFor="let component of gameComponents">
-    <app-odd *ngIf="component.type == 'odd'" [content]="component"></app-odd>
-    <app-even *ngIf="component.type == 'even'" [content]="component"></app-even>
+  <div *ngIf="topic==assignment_1">
+      <app-game-control (second-passed)="onSecondPassed($event)"></app-game-control>
+      <div *ngFor="let component of gameComponents">
+        <app-odd *ngIf="component.type == 'odd'" [content]="component"></app-odd>
+        <app-even *ngIf="component.type == 'even'" [content]="component"></app-even>
+      </div>
   </div>
+  <div *ngIf="topic=='observables'">
+     <app-observables></app-observables>
+  </div>
+  
 </div>
