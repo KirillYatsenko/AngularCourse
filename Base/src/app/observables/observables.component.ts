@@ -15,14 +15,11 @@ export class ObservablesComponent implements OnInit {
 
     let myObservable = new Observable((observer) => {
       setInterval(() => { observer.next('lalala') }, 1000);
-    });
-
-    myObservable.subscribe(
+    }).subscribe(
       res => {
         console.log(res);
       }
     )
-
   }
 
 }
