@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public showParagraph = false;
+  public clicks: string[] = [];
+
+  public onChangeParagraphVisibility() {
+    this.showParagraph = !this.showParagraph;
+    this.clicks.push(new Date().toString());
+  }
 }
