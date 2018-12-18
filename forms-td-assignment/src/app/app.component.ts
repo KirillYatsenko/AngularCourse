@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  public subscriptions = [{ id: "1", name: "Basic" }, { id: "2", name: "Advanced" }, { id: "3", name: "Pro" }]
+
 }
