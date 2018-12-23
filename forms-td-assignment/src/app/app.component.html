@@ -1,21 +1,27 @@
 <div class="container">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" > 
       <div class=form-group>
         <label for="email">Mail</label>
-        <input type="email" id="email" class="form-control">
+        <input type="email" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
+        <span class="text-danger" *ngIf="!email.valid && email.touched">Please provide valid email</span>
       </div>
       <div class=form-group>
         <label for="subscription">Subscription</label>
-        <select class="form-control" id="subscription" formControlName="status">
+        <select  [ngModel]="defaultSubscriptionId" class="form-control" id="subscription" ngModel name="subscription">
           <option *ngFor="let subscription of subscriptions" [value]="subscription.id">{{subscription.name}}</option>
         </select>
       </div>
       <div class=form-group>
-
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" ngModel name="password" required #password="ngModel">
+          <span class="text-danger" *ngIf="!password.valid && password.touched">Please provide password</span>
       </div>
+      <div *ngIf="form.invalid && form.touched" class="alert alert-danger" role="alert">
+          <strong>Invalid</strong> Your form is invalid
+        </div>
       <div class=form-group>
-
+        <button class="btn btn-default" type="submit">Submit form</button>
       </div>
     </form>
 
