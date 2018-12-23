@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  public sortOrder: string = "";
+
   appStatus = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('stable');
     }, 2000);
   });
+
   servers = [
     {
       instanceType: 'medium',
@@ -53,4 +57,13 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     });
   }
+
+  onChangeSortOrder(){
+    if(!this.sortOrder || this.sortOrder == "asc"){
+      this.sortOrder = "desc";
+    }else{
+      this.sortOrder = "asc";
+    }
+  }
+
 }
