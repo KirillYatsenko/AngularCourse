@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
-import { Observable } from 'rxjs';
 import * as fromRecipe from '../store/recipe.reducers';
 import * as RecipeActions from '../store/recipe.actions';
 
@@ -18,10 +17,9 @@ export class RecipeDetailComponent implements OnInit {
   recipeState: Observable<fromRecipe.State>;
   id: number;
 
-  constructor(private recipeService: RecipeService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<fromRecipe.FeatureState>) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private store: Store<fromRecipe.FeatureState>) {
   }
 
   ngOnInit() {
@@ -38,15 +36,15 @@ export class RecipeDetailComponent implements OnInit {
     this.store.select('recipes')
       .take(1)
       .subscribe((recipeState: fromRecipe.State) => {
-        this.store.dispatch(
-          new ShoppingListActions
-                .AddIngredients(recipeState.recipes[this.id].ingredients)
+        this.store.dispatch(new ShoppingListActions.AddIngredients(
+          recipeState.recipes[this.id].ingredients)
         );
       });
+
   }
 
   onEditRecipe() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
+    this.router.navigate(['edit'], {relativeTo: this.route});
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 

@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
 import * as fromRecipe from '../store/recipe.reducers';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,10 +13,9 @@ import { Observable } from 'rxjs';
 export class RecipeListComponent implements OnInit {
   recipeState: Observable<fromRecipe.State>;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private store: Store<fromRecipe.FeatureState>) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private store: Store<fromRecipe.FeatureState>) {
   }
 
   ngOnInit() {
@@ -24,7 +23,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   onNewRecipe() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
-
 }
